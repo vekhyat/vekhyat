@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="202" viewBox="0 0 400 202" role="img" aria-labelledby="title desc">
+<title id="title">Personal site. One page for the links. TypeScript / React / Vite</title><desc id="desc">Personal site. One page for the links. TypeScript / React / Vite. All essential text remains visible without animation.</desc>
+<rect width="400" height="202" rx="8" fill="#0b0f10" />
+<text x="24" y="48" fill="#eef3ef" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700">Personal site</text><text x="24" y="79" fill="#a9b8b0" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="400">One page for the links.</text><text x="24" y="178" fill="#a9b8b0" font-family="'Courier New',monospace" font-size="16" font-weight="400">TypeScript / React / Vite</text><rect x="24" y="105" width="350" height="40" rx="3" fill="none" stroke="#2b3830" /><text x="36" y="132" fill="#b6f36b" font-family="'Courier New',monospace" font-size="19" font-weight="400">vekhyat.github.io</text><path class="pointer" d="M330 113 L330 132 L336 127 L341 137 L346 134 L341 125 L349 125 Z" fill="#eef3ef" />
+</svg>

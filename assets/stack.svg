@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="174" viewBox="0 0 400 174" role="img" aria-labelledby="title desc">
+<title id="title">Python and C++, the languages I write</title><desc id="desc">Python and C++, the languages I write. All essential text remains visible without animation.</desc>
+<style>@keyframes scan{to{stroke-dashoffset:-390}}.scan{animation:scan 18s linear infinite}
+@media (prefers-reduced-motion:reduce) { * { animation:none!important; } }
+</style>
+<rect width="400" height="174" rx="8" fill="#0b0f10"/>
+<text x="24" y="40" fill="#a9b8b0" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="400">The languages I write.</text><rect x="24" y="60" width="42" height="38" rx="4" fill="none" stroke="#2b3830"/><text x="29" y="86" fill="#b6f36b" font-family="'Courier New',monospace" font-size="17" font-weight="400">Py</text><text x="24" y="126" fill="#eef3ef" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="400">Python</text><rect x="214" y="60" width="42" height="38" rx="4" fill="none" stroke="#2b3830"/><text x="219" y="86" fill="#b6f36b" font-family="'Courier New',monospace" font-size="17" font-weight="400">C++</text><text x="214" y="126" fill="#eef3ef" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="400">C++</text><path d="M24 154 H376" stroke="#2b3830"/><path class="scan" d="M24 154 H376" stroke="#b6f36b" stroke-dasharray="30 380"/>
+</svg>
