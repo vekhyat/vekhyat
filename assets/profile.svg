@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img">
-  <title>Vekhyat Jain, student at TIET Patiala. SatQuery AI, Auralis, and a one-page site.</title>
+  <title>Vekhyat Jain. Learning machine learning and theoretical computer science. SatQuery AI, Auralis, and a one-page site.</title>
   <rect width="1200" height="520" fill="#100e17"/>
   <rect x="28" y="28" width="1144" height="464" rx="32" fill="#1b1730" stroke="#f6f0e6" stroke-width="1.5"/>
   <circle cx="92" cy="118" r="36" fill="#ffb000"/>
   <text x="168" y="132" fill="#f6f0e6" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', serif" font-size="76">Vekhyat</text>
-  <text x="172" y="176" fill="#d9d0c4" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', serif" font-size="24">Student at TIET Patiala</text>
+  <text x="172" y="176" fill="#d9d0c4" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', serif" font-size="24">Learning ML, theoretical CS &amp; programming languages</text>
   <line x1="72" y1="214" x2="1128" y2="214" stroke="#ffb000" stroke-width="3"/>
   <circle cx="78" cy="268" r="8" fill="#ffb000"/>
   <text x="108" y="276" fill="#f6f0e6" font-family="Georgia, 'Palatino Linotype', serif" font-size="32">SatQuery AI</text>

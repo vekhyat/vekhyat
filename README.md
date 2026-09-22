@@ -1,6 +1,6 @@
-<img src="./assets/profile.svg" width="100%" alt="Vekhyat Jain, student at TIET Patiala. SatQuery AI asks a satellite image a question. Auralis turns a Spotify link into a download. The one-page site holds the links.">
+<img src="./assets/profile.svg" width="100%" alt="Vekhyat Jain. Learning machine learning and theoretical computer science. SatQuery AI asks a satellite image a question. Auralis turns a Spotify link into a download. The one-page site holds the links.">
 
-Student at **TIET Patiala**. These are the projects worth opening.
+I'm learning **machine learning, theoretical computer science, and programming languages** on my own. **Python and C++** are the languages I know. These projects are part of what I'm working on.
 
 ### [SatQuery AI](https://github.com/vekhyat/SatQuery-AI)
 
