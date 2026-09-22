@@ -26,7 +26,6 @@ def header(mobile=False):
     x = 24 if mobile else 40
     name_y = 72 if mobile else 112
     body = text(x,name_y,"Vekhyat Jain",44 if mobile else 78,weight=700)
-    body += text(x,name_y+40,"Computer science, in progress.",18 if mobile else 26,MUTED)
     body += text(x,h-65,"exploring",18 if mobile else 22,ACCENT,mono=True)
     # Stable label and static default survive disabled CSS; animated alternatives
     # occupy the exact same slot without a blank-first-frame reveal.
@@ -45,7 +44,7 @@ def header(mobile=False):
     body+=f'<path d="M{x} {h-92} H{w-x}" stroke="{LINE}"/>'
     body+=f'<path class="instruction" d="M{x} {h-92} H{w-x}" stroke="{ACCENT}" stroke-width="2" stroke-dasharray="26 {w}"/>'
     css+=f"@keyframes instruction{{to{{stroke-dashoffset:-{w-x*2+26}}}}}.instruction{{animation:instruction 12s linear infinite}}"
-    svg("header-mobile.svg" if mobile else "header.svg",w,h,"Vekhyat Jain. Computer science, in progress. Exploring machine learning, theoretical CS, programming languages, and computation",body,css)
+    svg("header-mobile.svg" if mobile else "header.svg",w,h,"Vekhyat Jain. Exploring machine learning, theoretical CS, programming languages, and computation",body,css)
 
 def terminal(mobile=False):
     w,h=(400,350) if mobile else (840,330)
@@ -53,7 +52,7 @@ def terminal(mobile=False):
     sz=17 if mobile else 23
     body=text(x,36,"vekhyat@github",16 if mobile else 18,MUTED,mono=True)
     body+=f'<path d="M0 54 H{w}" stroke="{LINE}"/>'
-    lines=[("$ whoami",ACCENT),("Vekhyat Jain",FG),("$ exploring",ACCENT),("ML, theory, languages",FG),("$ writing_in",ACCENT),("Python / C++",FG)]
+    lines=[("$ whoami",ACCENT),("Vekhyat Jain",FG),("$ exploring",ACCENT),("machine learning",FG),("$ writing_in",ACCENT),("Python and C++",FG)]
     ys=[90,122,176,208,262,294] if mobile else [94,127,181,214,268,301]
     css="@keyframes caret{0%,45%,100%{opacity:1}50%,90%{opacity:0}}"
     for i,((s,c),y) in enumerate(zip(lines,ys)):
@@ -74,7 +73,7 @@ def terminal(mobile=False):
             # The output is never completely absent, including at loop reset.
             old=text(x,y,s,sz,c,mono=True)
             body=body.replace(old,f'<g class="output{i}">{old}</g>')
-    svg("terminal-mobile.svg" if mobile else "terminal.svg",w,h,"Terminal: Vekhyat Jain. Exploring ML, theory, and languages. Writing in Python and C++",body,css)
+    svg("terminal-mobile.svg" if mobile else "terminal.svg",w,h,"Terminal: Vekhyat Jain. Exploring machine learning. Writing in Python and C++",body,css)
 
 def pipeline(mobile=False):
     w,h=(400,222) if mobile else (840,174)
@@ -94,7 +93,7 @@ def pipeline(mobile=False):
     svg("cs-animation-mobile.svg" if mobile else "cs-animation.svg",w,h,"Compilation stages: source.cpp, tokens, abstract syntax tree, machine code",body,css)
 
 def stack():
-    body=text(24,40,"The languages I write.",17,MUTED)
+    body = ""
     # Authored lettermarks are labels, not unofficial brand logos.
     for i,(label,lang) in enumerate([("Py","Python"),("C++","C++")]):
         x=24+i*190
@@ -103,15 +102,15 @@ def stack():
         body+=text(x,126,lang,20,FG)
     body+=f'<path d="M24 154 H376" stroke="{LINE}"/><path class="scan" d="M24 154 H376" stroke="{ACCENT}" stroke-dasharray="30 380"/>'
     css="@keyframes scan{to{stroke-dashoffset:-390}}.scan{animation:scan 18s linear infinite}"
-    svg("stack.svg",400,174,"Python and C++, the languages I write",body,css)
+    svg("stack.svg",400,174,"Python and C++",body,css)
 
 def satquery():
-    body=text(24,48,"SatQuery AI",30,FG,700)+text(24,79,"ISRO problem statement. Team prototype.",16,MUTED)
-    body+=text(24,120,"upload → route → evidence",19,ACCENT,mono=True)
+    body=text(24,48,"SatQuery AI",30,FG,700)+text(24,79,"Ask a satellite image a question.",16,MUTED)
+    body+=text(24,120,"upload, question, evidence",19,ACCENT,mono=True)
     body+=f'<path d="M24 140 H374" stroke="{LINE}"/><path class="packet" d="M24 140 H374" stroke="{ACCENT}" stroke-width="2" stroke-dasharray="20 380"/>'
     body+=text(24,178,"Python / FastAPI / React",16,MUTED,mono=True)
     css='@keyframes packet{from{stroke-dashoffset:20}to{stroke-dashoffset:-370}}.packet{animation:packet 9s linear infinite}'
-    svg("satquery.svg",400,202,"SatQuery AI. ISRO problem statement. Team prototype. Python, FastAPI, React",body,css)
+    svg("satquery.svg",400,202,"SatQuery AI. Ask a satellite image a question. Team project for an ISRO problem statement",body,css)
 
 def project(name,title,subtitle,tech,audio=False):
     w,h=400,202
@@ -134,11 +133,11 @@ def project(name,title,subtitle,tech,audio=False):
 
 def main():
     ASSETS.mkdir(exist_ok=True)
-    for mobile in (False,True): header(mobile);terminal(mobile);pipeline(mobile)
+    for mobile in (False,True): header(mobile);terminal(mobile)
     stack()
     satquery()
-    project("auralis.svg","Auralis","Lossless audio from a Spotify link.","Go / TypeScript / Wails",True)
-    project("website.svg","Personal site","One page for the links.","TypeScript / React / Vite")
-    print("Built 10 authored SVG assets")
+    project("auralis.svg","Auralis","Lossless download from a Spotify link.","Go / TypeScript / Wails",True)
+    project("website.svg","Personal site","GitHub, LinkedIn, Instagram, email.","TypeScript / React / Vite")
+    print("Built 8 authored SVG assets")
 
 if __name__=="__main__": main()
