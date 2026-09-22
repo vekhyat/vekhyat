@@ -21,12 +21,12 @@ I'm a student at **TIET, Patiala**, building desktop apps and web projects while
 ### Selected work
 
 <p>
-  <a href="https://github.com/vekhyat/Auralis"><img src="./assets/auralis.svg" width="49%" alt="Auralis — a desktop home for lossless audio. Go, TypeScript, Wails. View repository." /></a>
-  <a href="https://github.com/vekhyat/vekhyat.github.io"><img src="./assets/portfolio.svg" width="49%" alt="Personal website — a small corner of the internet, made mine. TypeScript. View repository." /></a>
+  <a href="https://github.com/vekhyat/Auralis"><img src="./assets/auralis.svg" width="420" alt="Auralis — a desktop home for lossless audio. Go, TypeScript, Wails. View repository." /></a>
+  <a href="https://github.com/vekhyat/vekhyat.github.io"><img src="./assets/portfolio.svg" width="420" alt="Personal website — a small corner of the internet, made mine. TypeScript. View repository." /></a>
 </p>
 <p>
-  <a href="https://github.com/vekhyat/codechefed"><img src="./assets/codechefed.svg" width="49%" alt="Problem-solving lab — CodeChef and LeetCode solutions in C++. View repository." /></a>
-  <a href="https://github.com/vekhyat/dsa-summer-ml"><img src="./assets/python.svg" width="49%" alt="Python foundations — OOP practice and learning experiments. View repository." /></a>
+  <a href="https://github.com/vekhyat/codechefed"><img src="./assets/codechefed.svg" width="420" alt="Problem-solving lab — CodeChef and LeetCode solutions in C++. View repository." /></a>
+  <a href="https://github.com/vekhyat/dsa-summer-ml"><img src="./assets/python.svg" width="420" alt="Python foundations — OOP practice and learning experiments. View repository." /></a>
 </p>
 
 <p align="right"><a href="https://github.com/vekhyat?tab=repositories">Explore all public repositories →</a></p>
