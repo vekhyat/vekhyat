@@ -1,0 +1,43 @@
+name: Refresh profile activity
+
+on:
+  schedule:
+    - cron: "23 2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_activity.py"
+      - "scripts/build_static.py"
+      - ".github/workflows/profile-activity.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-activity
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate public contribution graphics
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/update_activity.py --user vekhyat
+          python3 scripts/build_static.py
+      - name: Commit refreshed graphics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          if git diff --cached --quiet; then
+            echo "Contribution graphics are already current."
+          else
+            git commit -m "Refresh public contribution graphics"
+            git push
+          fi
