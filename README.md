@@ -11,9 +11,9 @@
 
 ### Curious about the theory. Building to understand it.
 
-I'm Vekhyat, a **Data Science & AI undergraduate at Thapar Institute of Engineering & Technology**. I build mobile apps, desktop tools, and experiments, while learning the mathematics and systems underneath them.
+I'm Vekhyat, a **Data Science & AI undergraduate at Thapar Institute of Engineering & Technology**. I build mobile apps, desktop tools, and experiments to understand the mathematics and systems behind them.
 
-**Currently exploring:** machine learning · theoretical computer science · programming languages · developer tools
+**Exploring:** machine learning · theoretical computer science · programming languages · developer tools
 
 ## Selected work
 
@@ -24,7 +24,7 @@ I'm Vekhyat, a **Data Science & AI undergraduate at Thapar Institute of Engineer
 ### [01 / Ingradient](https://github.com/vekhyat/ingradient)
 **Understand what's in your food.**
 
-A mobile app for packaged-food barcodes and labels, with on-device OCR, reviewable facts, scientific source citations, and encrypted local history.
+Scan packaged-food barcodes and labels. On-device OCR, source-cited assessments, and encrypted local history make the results easier to review.
 
 <sub>React Native · Expo · TypeScript · FastAPI</sub>
 
@@ -32,9 +32,9 @@ A mobile app for packaged-food barcodes and labels, with on-device OCR, reviewab
 <td width="50%" valign="top">
 
 ### [02 / SatQuery AI](https://github.com/vekhyat/SatQuery-AI)
-**Explore satellite imagery through queries.**
+**A closer look at Earth.**
 
-A team project for remote-sensing analysis, change detection, and optical/SAR comparison. Results pair visual evidence with a trace of the analysis.
+Explore satellite imagery, detect changes, and compare optical/SAR data. A team project that pairs visual evidence with a trace of the analysis.
 
 <sub>Python · FastAPI · React · Rasterio</sub>
 
@@ -46,19 +46,19 @@ A team project for remote-sensing analysis, change detection, and optical/SAR co
 ### [03 / Auralis](https://github.com/vekhyat/Auralis)
 **A desktop tool for lossless audio.**
 
-Search music and fetch audio from streaming links in a Go and Wails desktop app. Built on SpotiFLAC, with upstream attribution preserved.
+Search music and fetch audio from streaming links in a Go and Wails desktop app. Built on [SpotiFLAC](https://github.com/afkarxyz/SpotiFLAC).
 
-<sub>Go · Wails · Desktop development</sub>
+<sub>Go · Wails · TypeScript</sub>
 
 </td>
 <td width="50%" valign="top">
 
 ### [04 / Git Guide](https://github.com/vekhyat/git-guide)
-**Make everyday Git easier to understand.**
+**Make everyday Git click.**
 
-A self-contained visual guide to commands, branches, remotes, and undo. Quick and detailed reading modes, with fonts included for offline use.
+A visual guide to commands, branches, remotes, and undo. Switch between quick and detailed explanations, with everything available offline.
 
-<sub>HTML · CSS · JavaScript · Learning tools</sub>
+<sub>HTML · CSS · JavaScript</sub>
 
 </td>
 </tr>
@@ -73,12 +73,12 @@ A self-contained visual guide to commands, branches, remotes, and undo. Quick an
   <img src="./dist/github-contribution-grid-snake.svg" alt="Animated snake tracing my public GitHub contribution calendar." width="100%">
 </picture>
 
-<sub>A view of my public contribution calendar. Each square is a day of activity.</sub>
+<sub>My public contribution calendar, refreshed daily. Each square is a day of activity.</sub>
 
-### Outside the editor
+### Learning & community
 
-Learning **ML fundamentals, data structures, and mathematics**. Helping organise developer workshops and hackathons with **ACM Thapar**. Interested in how better tools can change the way we build software.
+Building foundations in **machine learning, data structures, and mathematics**. Helping organise developer workshops and hackathons with **ACM Thapar**.
 
 ---
 
-<p align="center"><sub>Explore a project. Ask a question. Build something useful.</sub></p>
+<p align="center"><sub>Have an idea or a question? <a href="mailto:vekhyatjain123@gmail.com">Let's talk.</a></sub></p>
