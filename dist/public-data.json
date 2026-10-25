@@ -1,42 +1,7 @@
 {
   "user": "vekhyat",
-  "snapshot": "2026-10-24",
+  "snapshot": "2026-10-25",
   "days": [
-    {
-      "date": "2025-10-19",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-20",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-21",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-22",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-23",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-24",
-      "level": 0,
-      "count": 0
-    },
-    {
-      "date": "2025-10-25",
-      "level": 0,
-      "count": 0
-    },
     {
       "date": "2025-10-26",
       "level": 0,
@@ -509,7 +474,7 @@
     },
     {
       "date": "2026-01-28",
-      "level": 3,
+      "level": 2,
       "count": 6
     },
     {
@@ -1154,7 +1119,7 @@
     },
     {
       "date": "2026-06-06",
-      "level": 2,
+      "level": 1,
       "count": 3
     },
     {
@@ -1524,7 +1489,7 @@
     },
     {
       "date": "2026-08-19",
-      "level": 2,
+      "level": 1,
       "count": 5
     },
     {
@@ -1539,7 +1504,7 @@
     },
     {
       "date": "2026-08-22",
-      "level": 2,
+      "level": 1,
       "count": 3
     },
     {
@@ -1554,7 +1519,7 @@
     },
     {
       "date": "2026-08-25",
-      "level": 2,
+      "level": 1,
       "count": 3
     },
     {
@@ -1589,7 +1554,7 @@
     },
     {
       "date": "2026-09-01",
-      "level": 2,
+      "level": 1,
       "count": 3
     },
     {
@@ -1609,7 +1574,7 @@
     },
     {
       "date": "2026-09-05",
-      "level": 2,
+      "level": 1,
       "count": 5
     },
     {
@@ -1634,7 +1599,7 @@
     },
     {
       "date": "2026-09-10",
-      "level": 4,
+      "level": 3,
       "count": 11
     },
     {
@@ -1664,7 +1629,7 @@
     },
     {
       "date": "2026-09-16",
-      "level": 2,
+      "level": 1,
       "count": 5
     },
     {
@@ -1694,7 +1659,7 @@
     },
     {
       "date": "2026-09-22",
-      "level": 4,
+      "level": 3,
       "count": 11
     },
     {
@@ -1784,12 +1749,12 @@
     },
     {
       "date": "2026-10-10",
-      "level": 3,
+      "level": 2,
       "count": 7
     },
     {
       "date": "2026-10-11",
-      "level": 2,
+      "level": 1,
       "count": 3
     },
     {
@@ -1824,22 +1789,22 @@
     },
     {
       "date": "2026-10-18",
-      "level": 3,
+      "level": 2,
       "count": 6
     },
     {
       "date": "2026-10-19",
-      "level": 4,
+      "level": 2,
       "count": 10
     },
     {
       "date": "2026-10-20",
-      "level": 3,
+      "level": 2,
       "count": 6
     },
     {
       "date": "2026-10-21",
-      "level": 2,
+      "level": 1,
       "count": 4
     },
     {
@@ -1854,17 +1819,23 @@
     },
     {
       "date": "2026-10-24",
-      "level": 0,
-      "count": 0
+      "level": 4,
+      "count": 21
+    },
+    {
+      "date": "2026-10-25",
+      "level": 1,
+      "count": 2
     }
   ],
-  "public_repositories": 11,
+  "public_repositories": 13,
   "public_stars": 1,
   "repository_primary_languages": {
     "Go": 1,
-    "C++": 2,
+    "C++": 3,
     "Python": 5,
     "HTML": 1,
-    "TypeScript": 2
+    "TypeScript": 2,
+    "Rust": 1
   }
 }
