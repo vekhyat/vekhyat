@@ -47,7 +47,7 @@
     "lines": [
       "Claude, Codex and Grok limits,",
       "usage and cost, in the",
-      "Omarchy bar."
+      "desktop bar."
     ]
   },
   "omarchy-swipe-switcher": {
@@ -55,7 +55,7 @@
     "lines": [
       "Windows-style swipe window",
       "switcher with live previews",
-      "for Omarchy."
+      "for Hyprland."
     ]
   }
 }

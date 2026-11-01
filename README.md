@@ -21,12 +21,10 @@ You can find me on my [portfolio](https://vekhyat.github.io/portfolio/) and [Lin
 - [Auralis](https://github.com/vekhyat/Auralis) searches for music and downloads lossless audio from a streaming link, in a Go and Wails desktop app. Built on [SpotiFLAC](https://github.com/afkarxyz/SpotiFLAC).
 - [Git Guide](https://github.com/vekhyat/git-guide) is a visual, offline guide to everyday Git: commands, branches, remotes, and undo.
 
-## Tools for my desktop
-
-I run [Omarchy](https://omarchy.org) and keep writing small things for it.
+## Small desktop tools
 
 - [omarchy-swipe-switcher](https://github.com/vekhyat/omarchy-swipe-switcher) switches windows with a three-finger swipe and shows live previews.
-- [quota](https://github.com/vekhyat/quota) shows Claude, Codex, and Grok limits, usage, and cost in the bar.
+- [quota](https://github.com/vekhyat/quota) shows Claude, Codex, and Grok limits, usage, and cost in the desktop bar.
 - [agent-hub](https://github.com/vekhyat/agent-hub) lets a coding agent start helpers in visible terminals, hand them tasks, and collect their reports.
 
 ## Lately
