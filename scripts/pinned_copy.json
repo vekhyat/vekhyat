@@ -1,0 +1,61 @@
+{
+  "_comment": "Hand-written card copy, keyed by lowercase repo name. Optional title overrides the repo name. Repos not listed get their GitHub description wrapped automatically. The build prints a note when a line had to be shortened.",
+  "ingradient": {
+    "hook": "What's in your food?",
+    "lines": [
+      "Scan a label or barcode.",
+      "OCR on the phone, sourced",
+      "verdicts, encrypted history."
+    ]
+  },
+  "satquery-ai": {
+    "title": "SatQuery AI",
+    "hook": "Ask a satellite a question.",
+    "lines": [
+      "Change detection, optical",
+      "against SAR, and a trace of",
+      "how each answer was formed."
+    ]
+  },
+  "auralis": {
+    "hook": "Lossless audio from a link.",
+    "lines": [
+      "Search music and download",
+      "FLAC from a streaming link,",
+      "in a Go desktop app."
+    ]
+  },
+  "git-guide": {
+    "hook": "Git, explained visually.",
+    "lines": [
+      "Commands, branches,",
+      "remotes, and undo. Quick",
+      "or detailed, fully offline."
+    ]
+  },
+  "agent-hub": {
+    "hook": "Agents that start agents.",
+    "lines": [
+      "A CLI your coding agent",
+      "uses to start Claude, Codex",
+      "and Grok helpers, then",
+      "collect their reports."
+    ]
+  },
+  "quota": {
+    "hook": "How much agent is left?",
+    "lines": [
+      "Claude, Codex and Grok limits,",
+      "usage and cost, in the",
+      "Omarchy bar."
+    ]
+  },
+  "omarchy-swipe-switcher": {
+    "hook": "Three fingers, next window.",
+    "lines": [
+      "Windows-style swipe window",
+      "switcher with live previews",
+      "for Omarchy."
+    ]
+  }
+}

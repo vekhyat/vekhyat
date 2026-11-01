@@ -62,7 +62,21 @@ def get_data(user):
     languages=Counter(r["language"] for r in repos if r.get("language") and not r["fork"])
     return {"user":user,"snapshot":datetime.now(timezone.utc).strftime("%Y-%m-%d"),"days":days,
             "public_repositories":len(repos),"public_stars":sum(r["stargazers_count"] for r in repos),
-            "repository_primary_languages":dict(languages)}
+            "repository_primary_languages":dict(languages),"pinned":get_pinned(user)}
+
+def get_pinned(user):
+    """The profile's pinned repositories, in pinned order. Needs GH_TOKEN (GraphQL has no anonymous access)."""
+    if not os.environ.get("GH_TOKEN"):
+        raise ValueError("GH_TOKEN is required to read pinned repositories")
+    query='{user(login:"%s"){pinnedItems(first:6,types:REPOSITORY){nodes{... on Repository{name url description stargazerCount isPrivate primaryLanguage{name}}}}}}'%user
+    body=json.dumps({"query":query}).encode()
+    req=Request("https://api.github.com/graphql",data=body,headers={"User-Agent":"vekhyat-profile-activity","Authorization":"Bearer "+os.environ["GH_TOKEN"],"Content-Type":"application/json"})
+    with urlopen(req,timeout=40) as response:
+        nodes=json.loads(response.read().decode("utf-8"))["data"]["user"]["pinnedItems"]["nodes"]
+    pinned=[{"name":n["name"],"url":n["url"],"description":n["description"] or "","stars":n["stargazerCount"],
+             "language":(n["primaryLanguage"] or {}).get("name")} for n in nodes if not n["isPrivate"]]
+    if not pinned: raise ValueError("No public pinned repositories; keeping existing cards")
+    return pinned
 
 def wrap(w,h,title,body,css,bg):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title">

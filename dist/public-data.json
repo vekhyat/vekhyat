@@ -1825,7 +1825,7 @@
     {
       "date": "2026-11-01",
       "level": 2,
-      "count": 7
+      "count": 8
     }
   ],
   "public_repositories": 14,
@@ -1838,5 +1838,35 @@
     "QML": 1,
     "Rust": 1,
     "TypeScript": 1
-  }
+  },
+  "pinned": [
+    {
+      "name": "SatQuery-AI",
+      "url": "https://github.com/vekhyat/SatQuery-AI",
+      "description": "Explore satellite imagery, detect changes, and compare optical/SAR data. A Python + React team project for an ISRO problem statement.",
+      "stars": 0,
+      "language": "Python"
+    },
+    {
+      "name": "Auralis",
+      "url": "https://github.com/vekhyat/Auralis",
+      "description": "A Go + Wails desktop app for music search and lossless audio downloads from streaming links. Built on SpotiFLAC.",
+      "stars": 1,
+      "language": "Go"
+    },
+    {
+      "name": "git-guide",
+      "url": "https://github.com/vekhyat/git-guide",
+      "description": "An interactive guide to daily Git commands, branches, remotes, and undo.",
+      "stars": 0,
+      "language": "HTML"
+    },
+    {
+      "name": "agent-hub",
+      "url": "https://github.com/vekhyat/agent-hub",
+      "description": "A CLI your coding agent uses to start Claude, Codex, OpenCode and Grok helpers in visible terminals, hand them tasks, and collect their reports.",
+      "stars": 0,
+      "language": "Python"
+    }
+  ]
 }

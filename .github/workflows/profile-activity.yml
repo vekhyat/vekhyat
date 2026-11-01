@@ -8,7 +8,9 @@ on:
     branches: [main]
     paths:
       - "scripts/update_activity.py"
+      - "scripts/build_assets.py"
       - "scripts/build_static.py"
+      - "scripts/pinned_copy.json"
       - ".github/workflows/profile-activity.yml"
 
 permissions:
@@ -24,20 +26,23 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Generate public contribution graphics
+      - name: Install font tooling
+        run: pip install --quiet "fonttools>=4.50" "brotli>=1.1"
+      - name: Generate contribution graphics and pinned cards
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/update_activity.py --user vekhyat
+          python3 scripts/build_assets.py
           python3 scripts/build_static.py
       - name: Commit refreshed graphics
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dist/
+          git add dist/ README.md
           if git diff --cached --quiet; then
-            echo "Contribution graphics are already current."
+            echo "Graphics and pinned cards are already current."
           else
-            git commit -m "Refresh public contribution graphics"
+            git commit -m "Refresh contribution graphics and pinned cards"
             git push
           fi
