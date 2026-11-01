@@ -44,5 +44,6 @@ jobs:
             echo "Graphics and pinned cards are already current."
           else
             git commit -m "Refresh contribution graphics and pinned cards"
+            git pull --rebase origin main
             git push
           fi
