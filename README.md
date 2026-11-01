@@ -29,11 +29,16 @@ I run [Omarchy](https://omarchy.org) and keep writing small things for it.
 - [quota](https://github.com/vekhyat/quota) shows Claude, Codex, and Grok limits, usage, and cost in the bar.
 - [agent-hub](https://github.com/vekhyat/agent-hub) lets a coding agent start helpers in visible terminals, hand them tasks, and collect their reports.
 
-## Contributions
+## Lately
+
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/lately.svg">
+  <img src="./dist/lately.svg" alt="Three notes on the board: my latest commit, my contribution streak, and my languages by repository count. Refreshed daily." width="100%">
+</picture>
 
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/github-contribution-grid-snake.svg">
   <img src="./dist/github-contribution-grid-snake.svg" alt="My public GitHub contribution calendar for the last year, with a snake tracing it." width="100%">
 </picture>
 
-<sub>Refreshed daily by a workflow in this repository, from public data only.</sub>
+<sub>All of this is refreshed daily by a workflow in this repository, from public data only.</sub>

@@ -15,6 +15,7 @@ import argparse
 import json
 import math
 import sys
+from datetime import date
 from html import escape
 from pathlib import Path
 
@@ -286,6 +287,71 @@ def tile(font, measure, i, repo):
     return size, alt
 
 
+def lately(font, measure, data):
+    """A strip of three notes: the latest commit, the contribution streak, and the language mix."""
+    W, H = BOARD_W, 250
+    parts, css, pins = [], [], []
+
+    def note(i, x, y, w, h, angle, inner, pin_at):
+        parts.append(card(x, y, w, h, angle, f"n{i}", inner))
+        css.append(f".n{i}{{animation:land .5s cubic-bezier(.2,.8,.3,1) {i*.18:.2f}s both}}")
+        qx, qy = rotated(x, y, w, h, angle, *pin_at)
+        pins.append(pin(qx, qy, f"q{i}"))
+        css.append(f".q{i}{{animation:press .3s cubic-bezier(.3,1.4,.5,1) {.4+i*.18:.2f}s both}}")
+
+    # Latest commit.
+    x, y, w, h, pad = 40, 40, 318, 170, 22
+    c = data.get("latest_commit")
+    inner = text(x + pad, y + 32, "Latest commit", 12, CREAM_INK)
+    if c:
+        d, tw = outline(font, c["repo"].upper(), 26)
+        if tw > w - 2 * pad:
+            d, tw = outline(font, c["repo"].upper(), round(26 * (w - 2 * pad) / tw, 1))
+        inner += f'<path fill="{NAVY}" transform="translate({x+pad} {y+66})" d="{d}"/>'
+        lines = measure.wrap(c["message"], 13, w - 2 * pad, 2)
+        for j, line in enumerate(lines):
+            inner += text(x + pad, y + 94 + j * 18, line, 13, NAVY, 700 if j == 0 else 400)
+        when = date.fromisoformat(c["date"])
+        inner += f'<path d="M{x+pad} {y+h-38} H{x+w-pad}" stroke="{CREAM_EDGE}"/>'
+        inner += text(x + pad, y + h - 17, f"{when.day} {when.strftime('%b %Y')}", 11.5, CREAM_INK)
+    else:
+        inner += text(x + pad, y + 70, "Nothing public yet.", 13, NAVY, 700)
+    note(0, x, y, w, h, -1.4, inner, (x + w - 20, y + 18))
+
+    # Streak ticket: a cream ticket with a notch on each side.
+    st = data["streaks"]
+    x, y, w, h = 384, 40, 196, 170
+    big, bw = outline(font, str(st["current"]), 74)
+    inner = (f'<circle cx="{x}" cy="{y+h/2}" r="9" fill="{BOARD}"/><circle cx="{x+w}" cy="{y+h/2}" r="9" fill="{BOARD}"/>'
+             f'<path d="M{x+12} {y+h/2} H{x+w-12}" stroke="{CREAM_EDGE}" stroke-dasharray="4 4"/>')
+    inner += f'<path fill="{RED}" transform="translate({x+22} {y+76})" d="{big}"/>'
+    inner += text(x + 22 + bw + 10, y + 76, "day streak" if st["current"] != 1 else "day streak", 13, NAVY, 700)
+    inner += text(x + 22, y + 118, f"longest run {st['longest']} days", 11.5, CREAM_INK)
+    inner += text(x + 22, y + 136, f"{st['total']:,} contributions this year", 11.5, CREAM_INK)
+    inner += text(x + 22, y + 154, f"active on {st['active_days']} of the last 365 days", 11.5, CREAM_INK)
+    note(1, x, y, w, h, 1.3, inner, (x + w - 20, y + 18))
+
+    # Languages by repository count.
+    langs = sorted(data["repository_primary_languages"].items(), key=lambda kv: (-kv[1], kv[0]))[:5]
+    x, y, w, h, pad = 606, 40, 194, 170, 18
+    inner = text(x + pad, y + 32, "Languages, by repository", 12, CREAM_INK)
+    top = max((n for _, n in langs), default=1)
+    bar_x, bar_w = x + pad + 76, w - 2 * pad - 76
+    for j, (lang, n) in enumerate(langs):
+        yy = y + 58 + j * 24
+        inner += text(x + pad, yy + 4, measure.fit(lang, 11.5, 70), 11.5, NAVY, 700 if j == 0 else 400)
+        inner += f'<rect x="{bar_x}" y="{yy-4}" width="{bar_w}" height="8" rx="2" fill="{CREAM_EDGE}"/>'
+        inner += (f'<rect class="bar b{j}" x="{bar_x}" y="{yy-4}" width="{bar_w*n/top:.1f}" height="8" rx="2" '
+                  f'fill="{RED if j == 0 else NAVY}" transform-origin="{bar_x} {yy}"/>')
+        css.append(f".b{j}{{animation:grow .5s ease-out {1.1+j*.08:.2f}s both}}")
+    note(2, x, y, w, h, -0.9, inner, (x + w - 20, y + 18))
+
+    css.insert(0, "@keyframes grow{from{transform:scaleX(0)}to{transform:none}}")
+    desc = f"Latest commit, a {st['current']}-day contribution streak, and the top languages, pinned to the green board."
+    return board_svg(DIST / "lately.svg", W, H, f"Lately. Snapshot {data['snapshot']}.", desc,
+                     "".join(parts) + "".join(pins), css, brackets=False)
+
+
 def readme_block(pinned, alts):
     def picture(src, width, alt):
         return (f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/{src}">'
@@ -304,7 +370,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--data", type=Path, default=DIST / "public-data.json")
     a = p.parse_args()
-    pinned = json.loads(a.data.read_text(encoding="utf-8")).get("pinned") or []
+    data = json.loads(a.data.read_text(encoding="utf-8"))
+    pinned = data.get("pinned") or []
     if not pinned:
         raise SystemExit("No pinned repositories in the snapshot; run scripts/update_activity.py first")
     font = instantiateVariableFont(TTFont(FONT), {"wdth": 62, "wght": 820})
@@ -313,7 +380,7 @@ def main():
     for folder in (DIST, DIST / "static"):
         for old in folder.glob("card-*.svg"):
             old.unlink()
-    total = header(font, pinned)
+    total = header(font, pinned) + lately(font, measure, data)
     alts = []
     for i, repo in enumerate(pinned):
         size, alt = tile(font, measure, i, repo)
@@ -323,7 +390,7 @@ def main():
     s = readme.read_text(encoding="utf-8")
     start, end = s.index(MARK_START), s.index(MARK_END) + len(MARK_END)
     readme.write_text(s[:start] + readme_block(pinned, alts) + s[end:], encoding="utf-8")
-    print(f"Built dist/header.svg and {len(pinned)} pinned cards ({total:,} bytes); README block updated")
+    print(f"Built dist/header.svg, dist/lately.svg and {len(pinned)} pinned cards ({total:,} bytes); README block updated")
 
 
 if __name__ == "__main__":

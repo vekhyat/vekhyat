@@ -62,7 +62,33 @@ def get_data(user):
     languages=Counter(r["language"] for r in repos if r.get("language") and not r["fork"])
     return {"user":user,"snapshot":datetime.now(timezone.utc).strftime("%Y-%m-%d"),"days":days,
             "public_repositories":len(repos),"public_stars":sum(r["stargazers_count"] for r in repos),
-            "repository_primary_languages":dict(languages),"pinned":get_pinned(user)}
+            "repository_primary_languages":dict(languages),"pinned":get_pinned(user),
+            "latest_commit":get_latest_commit(user,repos),"streaks":streaks(days)}
+
+def get_latest_commit(user,repos):
+    """The newest commit the user authored, from the most recently pushed repositories (the profile repo excluded)."""
+    candidates=sorted((r for r in repos if not r["fork"] and r["name"].lower()!=user.lower()),key=lambda r:r["pushed_at"],reverse=True)[:4]
+    for r in candidates:
+        for c in json.loads(fetch(f"https://api.github.com/repos/{r['full_name']}/commits?per_page=10")):
+            author=(c.get("author") or {}).get("login","")
+            if author.lower()==user.lower():
+                message=c["commit"]["message"].split("\n")[0].strip()
+                return {"repo":r["name"],"url":c["html_url"],"message":message,"date":c["commit"]["author"]["date"][:10]}
+    return None
+
+def streaks(days):
+    """Current and longest runs of days with at least one contribution, from the public calendar."""
+    counts=[d["count"] for d in days]
+    longest=run=0
+    for c in counts:
+        run=run+1 if c else 0; longest=max(longest,run)
+    current=0
+    for c in reversed(counts[:-1] if counts[-1]==0 else counts):  # today may still be in progress
+        if c: current+=1
+        else: break
+    busiest=max(days,key=lambda d:d["count"])
+    return {"current":current,"longest":longest,"total":sum(counts),"active_days":sum(1 for c in counts if c),
+            "busiest_day":busiest["date"],"busiest_count":busiest["count"]}
 
 def get_pinned(user):
     """The profile's pinned repositories, in pinned order. Needs GH_TOKEN (GraphQL has no anonymous access)."""
@@ -152,7 +178,7 @@ def snake(data):
     css+='@keyframes traverse{'+frames+'}@keyframes visible{0%,91%{opacity:1}95%,99.9%{opacity:0}100%{opacity:1}}.snake{animation:traverse 42s linear infinite,visible 42s linear infinite}'
     body+=cells+f'<g class="snake" transform="translate(18,68)"><rect x="-1" y="-1" width="12" height="12" rx="4" fill="{head}"/><circle cx="3" cy="3" r="1" fill="{bg}"/><circle cx="7" cy="3" r="1" fill="{bg}"/></g>'
     # The head is followed by two slightly delayed segments on the same path.
-    for delay,opacity,size in [(".22", ".55",8),(".44",".3",6)]:
+    for delay,opacity,size in [(".22",".7",8),(".44",".45",6),(".66",".25",5)]:
         body+=f'<g class="snake" style="animation-delay:{delay}s" transform="translate(18,68)"><rect opacity="{opacity}" width="{size}" height="{size}" rx="3" fill="{head}"/></g>'
     body+=txt(18,184,"Public contribution calendar, refreshed "+data["snapshot"],12,muted)
     return wrap(18*2+(max(c for c,r in coords)+1)*unit,202,"Animated snake traversing actual public GitHub contribution levels, "+days[0]["date"]+" to "+days[-1]["date"],body,css,bg)
