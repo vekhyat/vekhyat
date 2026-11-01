@@ -1,84 +1,72 @@
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header.svg">
-  <img src="./assets/header.svg" alt="Vekhyat Jain. Exploring machine learning, theoretical CS, and programming languages." width="100%">
+  <img src="./assets/header.svg" alt="Vekhyat Jain. Data Science & AI undergraduate at Thapar Institute of Engineering & Technology, Patiala. Builds mobile apps, desktop tools, and ML experiments." width="100%">
 </picture>
 
-<p align="center">
-  <a href="https://vekhyat.github.io/portfolio/">Portfolio</a> ·
-  <a href="https://www.linkedin.com/in/vekhyat-jain-562776364">LinkedIn</a> ·
-  <a href="mailto:vekhyatjain123@gmail.com">Email</a>
-</p>
+I'm Vekhyat. I study Data Science & AI at Thapar and build things to understand the maths and systems underneath them: a food-label scanner for phones, small tools for my Linux desktop, and a satellite-imagery project with a team. Lately I'm reading about theoretical computer science and programming languages.
 
-### Curious about the theory. Building to understand it.
+You can find me on my [portfolio](https://vekhyat.github.io/portfolio/) and [LinkedIn](https://www.linkedin.com/in/vekhyat-jain-562776364), or write to [vekhyatjain123@gmail.com](mailto:vekhyatjain123@gmail.com).
 
-I'm Vekhyat, a **Data Science & AI undergraduate at Thapar Institute of Engineering & Technology**. I build mobile apps, desktop tools, and experiments to understand the mathematics and systems behind them.
-
-**Exploring:** machine learning · theoretical computer science · programming languages · developer tools
-
-## Selected work
+## Work
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### [01 / Ingradient](https://github.com/vekhyat/ingradient)
-**Understand what's in your food.**
+### [Ingradient](https://github.com/vekhyat/ingradient)
 
-Scan packaged-food barcodes and labels. On-device OCR, source-cited assessments, and encrypted local history make the results easier to review.
+Scan a packaged food's barcode or label and get a sourced assessment of what's in it. OCR runs on the phone, and your history stays encrypted on the device.
 
-<sub>React Native · Expo · TypeScript · FastAPI</sub>
+<sub>React Native, Expo, TypeScript, FastAPI</sub>
 
 </td>
 <td width="50%" valign="top">
 
-### [02 / SatQuery AI](https://github.com/vekhyat/SatQuery-AI)
-**A closer look at Earth.**
+### [SatQuery AI](https://github.com/vekhyat/SatQuery-AI)
 
-Explore satellite imagery, detect changes, and compare optical/SAR data. A team project that pairs visual evidence with a trace of the analysis.
+Ask questions of satellite imagery: spot change over time and compare optical with SAR data, with a trace of how each answer was reached. A team project for an ISRO problem statement.
 
-<sub>Python · FastAPI · React · Rasterio</sub>
+<sub>Python, FastAPI, React, Rasterio</sub>
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### [03 / Auralis](https://github.com/vekhyat/Auralis)
-**A desktop tool for lossless audio.**
+### [Auralis](https://github.com/vekhyat/Auralis)
 
-Search music and fetch audio from streaming links in a Go and Wails desktop app. Built on [SpotiFLAC](https://github.com/afkarxyz/SpotiFLAC).
+Search for music and download lossless audio from a streaming link, in a desktop app. Built on [SpotiFLAC](https://github.com/afkarxyz/SpotiFLAC).
 
-<sub>Go · Wails · TypeScript</sub>
+<sub>Go, Wails, TypeScript</sub>
 
 </td>
 <td width="50%" valign="top">
 
-### [04 / Git Guide](https://github.com/vekhyat/git-guide)
-**Make everyday Git click.**
+### [Git Guide](https://github.com/vekhyat/git-guide)
 
-A visual guide to commands, branches, remotes, and undo. Switch between quick and detailed explanations, with everything available offline.
+A visual, offline guide to everyday Git: commands, branches, remotes, and undo. Each topic has a quick explanation and a detailed one.
 
-<sub>HTML · CSS · JavaScript</sub>
+<sub>HTML, CSS, JavaScript</sub>
 
 </td>
 </tr>
 </table>
 
-## A little progress, every day
+## Tools for my desktop
+
+I run [Omarchy](https://omarchy.org) and keep writing small things for it.
+
+- [omarchy-swipe-switcher](https://github.com/vekhyat/omarchy-swipe-switcher) switches windows with a three-finger swipe and shows live previews.
+- [quota](https://github.com/vekhyat/quota) shows Claude, Codex, and Grok limits, usage, and cost in the bar.
+- [agent-hub](https://github.com/vekhyat/agent-hub) lets a coding agent start helpers in visible terminals, hand them tasks, and collect their reports.
+
+## Contributions
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="./dist/static/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/github-contribution-grid-snake.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./dist/github-contribution-grid-snake-dark.svg">
-  <img src="./dist/github-contribution-grid-snake.svg" alt="Animated snake tracing my public GitHub contribution calendar." width="100%">
+  <img src="./dist/github-contribution-grid-snake.svg" alt="My public GitHub contribution calendar for the last year, with a snake tracing it." width="100%">
 </picture>
 
-<sub>My public contribution calendar, refreshed daily. Each square is a day of activity.</sub>
+<sub>Refreshed daily by a workflow in this repository, from public data only.</sub>
 
-### Learning & community
-
-Building foundations in **machine learning, data structures, and mathematics**. Helping organise developer workshops and hackathons with **ACM Thapar**.
-
----
-
-<p align="center"><sub>Have an idea or a question? <a href="mailto:vekhyatjain123@gmail.com">Let's talk.</a></sub></p>
+Away from the keyboard I help organise developer workshops and hackathons with ACM Thapar.

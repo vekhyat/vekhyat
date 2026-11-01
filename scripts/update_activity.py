@@ -107,13 +107,14 @@ def activity(data,light=False):
     css="@keyframes refresh{0%,85%,100%{opacity:1}92%{opacity:.35}}.refresh{animation:refresh 14s ease-in-out infinite}"
     return wrap(400,324+max(0,len(rows)-1)*23,"Actual public GitHub statistics, snapshot "+data["snapshot"],body,css,bg)
 
-def snake(data,dark=False):
-    bg,fg,muted,head=("#0b0f10","#eef3ef","#a9b8b0","#b6f36b") if dark else ("#f6f8f5","#172219","#49594c","#325d18")
-    colors=["#19221c","#2b4525","#4b6f32","#7ea845","#b6f36b"] if dark else ["#e1e8de","#c6deb2","#9ac174","#699547","#427321"]
+def snake(data):
+    # The board from the profile header: chalk squares on green, a red pin for the head. Same on both GitHub themes.
+    bg,fg,muted,head="#2c4a40","#f2eee4","#b9cbc0","#c4452d"
+    colors=["#26413a","#4a6a5c","#7c9b8a","#b7cbbd","#f2eee4"]
     days=data["days"]; first=date.fromisoformat(days[0]["date"])
     # Calendar data starts on Sunday; explicitly check before positioning.
     if first.weekday()!=6: raise ValueError("Calendar no longer starts on Sunday")
-    points={}; body=txt(18,29,"The contribution snake",18,fg)
+    points={}; body=txt(18,29,"A year of squares",18,fg)
     body+=txt(18,49,days[0]["date"]+" — "+days[-1]["date"],12,muted)
     css=""; cells=""; coords=[]
     for d in days:
@@ -139,13 +140,13 @@ def snake(data,dark=False):
     # The head is followed by two slightly delayed segments on the same path.
     for delay,opacity,size in [(".22", ".55",8),(".44",".3",6)]:
         body+=f'<g class="snake" style="animation-delay:{delay}s" transform="translate(18,68)"><rect opacity="{opacity}" width="{size}" height="{size}" rx="3" fill="{head}"/></g>'
-    body+=txt(18,184,"Public calendar · refreshed "+data["snapshot"],12,muted)
+    body+=txt(18,184,"Public contribution calendar, refreshed "+data["snapshot"],12,muted)
     return wrap(18*2+(max(c for c,r in coords)+1)*unit,202,"Animated snake traversing actual public GitHub contribution levels, "+days[0]["date"]+" to "+days[-1]["date"],body,css,bg)
 
 def main():
     p=argparse.ArgumentParser();p.add_argument("--user",default="vekhyat");p.add_argument("--from-json",type=Path);a=p.parse_args()
     data=json.loads(a.from_json.read_text(encoding="utf-8")) if a.from_json else get_data(a.user)
-    outputs={"activity.svg":activity(data),"activity-light.svg":activity(data,True),"github-contribution-grid-snake.svg":snake(data),"github-contribution-grid-snake-dark.svg":snake(data,True)}
+    outputs={"activity.svg":activity(data),"activity-light.svg":activity(data,True),"github-contribution-grid-snake.svg":snake(data)}
     for name,content in outputs.items():
         ET.fromstring(content)
         if len(content.encode())>250_000: raise ValueError(f"Unexpected size: {name}")
