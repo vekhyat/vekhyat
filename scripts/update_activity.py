@@ -147,46 +147,66 @@ def activity(data,light=False):
     css="@keyframes refresh{0%,85%,100%{opacity:1}92%{opacity:.35}}.refresh{animation:refresh 14s ease-in-out infinite}"
     return wrap(400,324+max(0,len(rows)-1)*23,"Actual public GitHub statistics, snapshot "+data["snapshot"],body,css,bg)
 
-def snake(data):
-    # The board from the profile header: chalk squares on green, a red pin for the head. Same on both GitHub themes.
-    bg,fg,muted,head="#2c4a40","#f2eee4","#b9cbc0","#c4452d"
-    colors=["#26413a","#4a6a5c","#7c9b8a","#b7cbbd","#f2eee4"]
-    days=data["days"]; first=date.fromisoformat(days[0]["date"])
-    # Calendar data starts on Sunday; explicitly check before positioning.
-    if first.weekday()!=6: raise ValueError("Calendar no longer starts on Sunday")
-    points={}; body=txt(18,29,"A year of squares",18,fg)
-    body+=txt(18,49,days[0]["date"]+" — "+days[-1]["date"],12,muted)
-    css=""; cells=""; coords=[]
-    for d in days:
-        offset=(date.fromisoformat(d["date"])-first).days; col,row=divmod(offset,7)
-        points[(col,row)]=d
-    for col in range(max(c for c,r in points)+1):
-        for row in (range(7) if col%2==0 else reversed(range(7))):
-            if (col,row) in points: coords.append((col,row))
-    n=len(coords); unit=14
-    for i,(col,row) in enumerate(coords):
-        d=points[(col,row)]; x=18+col*unit;y=68+row*unit
-        t=round((i/(n-1))*.91*100,3)
-        cls=""
-        if d["level"]:
-            cls=f' class="c{i}"'
-            css+=f'@keyframes eat{i}{{0%,{t}%{{opacity:1}}{min(t+.1,91.1)}%,95%{{opacity:.13}}100%{{opacity:1}}}}.c{i}{{animation:eat{i} 42s linear infinite}}'
-        cells+=f'<rect{cls} x="{x}" y="{y}" width="10" height="10" rx="2" fill="{colors[d["level"]]}"><title>{d["date"]}: {d["count"]} contributions</title></rect>'
-    frames="".join(f'{round(i/(n-1)*91,3)}%{{transform:translate({18+c*unit}px,{68+r*unit}px)}}' for i,(c,r) in enumerate(coords))
-    last=coords[-1]
-    frames+=f'95%{{transform:translate({18+last[0]*unit}px,{68+last[1]*unit}px)}}100%{{transform:translate(18px,68px)}}'
-    css+='@keyframes traverse{'+frames+'}@keyframes visible{0%,91%{opacity:1}95%,99.9%{opacity:0}100%{opacity:1}}.snake{animation:traverse 42s linear infinite,visible 42s linear infinite}'
-    body+=cells+f'<g class="snake" transform="translate(18,68)"><rect x="-1" y="-1" width="12" height="12" rx="4" fill="{head}"/><circle cx="3" cy="3" r="1" fill="{bg}"/><circle cx="7" cy="3" r="1" fill="{bg}"/></g>'
-    # The head is followed by two slightly delayed segments on the same path.
-    for delay,opacity,size in [(".22",".7",8),(".44",".45",6),(".66",".25",5)]:
-        body+=f'<g class="snake" style="animation-delay:{delay}s" transform="translate(18,68)"><rect opacity="{opacity}" width="{size}" height="{size}" rx="3" fill="{head}"/></g>'
-    body+=txt(18,184,"Public contribution calendar, refreshed "+data["snapshot"],12,muted)
-    return wrap(18*2+(max(c for c,r in coords)+1)*unit,202,"Animated snake traversing actual public GitHub contribution levels, "+days[0]["date"]+" to "+days[-1]["date"],body,css,bg)
+def ridge(data):
+    """The year as a mountain ridge: each day's contributions set the height, the trekker walks it, the route is red thread."""
+    import math
+    bg,chalk,muted,red,rock,snow,haze="#2c4a40","#f2eee4","#b9cbc0","#c4452d","#1b312a","#f2eee4","#3d5c50"
+    days=data["days"]; n=len(days)
+    W,H=840,300; left,right,top,base=40,800,74,236
+    counts=[d["count"] for d in days]
+    # Smooth over three days so the ridge reads as terrain, then compress with a log so one huge day does not flatten the rest.
+    kernel=[1,2,3,4,3,2,1]; k=len(kernel)//2
+    smooth=[sum(counts[min(max(i+j-k,0),n-1)]*w for j,w in enumerate(kernel))/sum(kernel) for i in range(n)]
+    peak=max(smooth) or 1
+    xs=[left+(right-left)*i/(n-1) for i in range(n)]
+    ys=[base-(base-top)*math.log1p(v)/math.log1p(peak) for v in smooth]
+    pts=" ".join(f"{x:.1f},{y:.1f}" for x,y in zip(xs,ys))
+    ridge_line=f"M{xs[0]:.1f} {ys[0]:.1f} "+" ".join(f"L{x:.1f} {y:.1f}" for x,y in zip(xs[1:],ys[1:]))
+    # A hazier range behind, offset and lower, for depth.
+    back=" ".join(f"{(left+(right-left)*i/(n-1)):.1f},{(base-(base-top)*0.55*math.log1p(smooth[(i*7+40)%n])/math.log1p(peak)-10):.1f}" for i in range(n))
+    body=f'<polygon points="{left},{base} {back} {right},{base}" fill="{haze}" opacity=".7"/>'
+    body+=f'<polygon points="{left},{base} {pts} {right},{base}" fill="{rock}"/>'
+    # Snow where the ridge is high: the top third of the range.
+    snowline=base-(base-top)*0.55
+    snow_pts=[]
+    for x,y in zip(xs,ys):
+        snow_pts.append(f"{x:.1f},{min(y,snowline):.1f}" if y<snowline else f"{x:.1f},{snowline:.1f}")
+    body+=f'<clipPath id="ridgeclip"><polygon points="{left},{base} {pts} {right},{base}"/></clipPath>'
+    body+=f'<polygon clip-path="url(#ridgeclip)" points="{left},{snowline} {pts} {right},{snowline}" fill="{snow}" opacity=".92"/>'
+    body+=f'<path d="{ridge_line}" fill="none" stroke="{chalk}" stroke-width="1" opacity=".5"/>'
+    body+=f'<path d="M{left} {base} H{right}" stroke="{muted}" stroke-opacity=".5"/>'
+    # Month ticks.
+    seen=set()
+    for i,d in enumerate(days):
+        m=d["date"][:7]
+        if m not in seen and d["date"].endswith("-01"):
+            seen.add(m); x=xs[i]
+            body+=f'<path d="M{x:.1f} {base} v6" stroke="{muted}" stroke-opacity=".7"/>'
+            body+=txt(x-10,base+22,date.fromisoformat(d["date"]).strftime("%b"),11,muted)
+    # The route: red thread drawn along the ridge as the trekker walks it (SMIL, so it works inside an img).
+    dur=40
+    body+=(f'<path id="route" d="{ridge_line}" fill="none" stroke="{red}" stroke-width="1.6" stroke-linecap="round" '
+           f'pathLength="1" stroke-dasharray="1" stroke-dashoffset="0">'
+           f'<animate attributeName="stroke-dashoffset" from="1" to="0" dur="{dur}s" repeatCount="indefinite"/></path>')
+    # The trekker: a small chalk figure with a pole. It rests at today's end of the ridge; the motion path is
+    # expressed relative to that spot so the same figure walks the route when animation is available.
+    ex,ey=xs[-1],ys[-1]
+    fig=(f'<g transform="translate(0 -11)"><circle cx="0" cy="-7" r="2.6" fill="{chalk}"/>'
+         f'<path d="M0 -4 V3 M0 3 L-3 9 M0 3 L3 9 M0 -1 L-4 2 M0 -1 L4 1" stroke="{chalk}" stroke-width="1.6" stroke-linecap="round" fill="none"/>'
+         f'<path d="M4.5 0 L6 10" stroke="{red}" stroke-width="1.4" stroke-linecap="round"/></g>')
+    walk=f"M{xs[0]-ex:.1f} {ys[0]-ey:.1f} "+" ".join(f"L{x-ex:.1f} {y-ey:.1f}" for x,y in zip(xs[1:],ys[1:]))
+    body+=f'<g transform="translate({ex:.1f} {ey:.1f})">{fig}<animateMotion dur="{dur}s" repeatCount="indefinite" path="{walk}"/></g>'
+    peak_i=max(range(n),key=lambda i:counts[i]); px,py=xs[peak_i],ys[peak_i]
+    body+=f'<path d="M{px:.1f} {py:.1f} v-14" stroke="{red}" stroke-width="1.2"/><path d="M{px:.1f} {py-14:.1f} h9 l-3 3 l3 3 h-9z" fill="{red}"/>'
+    body+=txt(18,30,"A year on the ridge",18,chalk)
+    body+=txt(18,50,f"{days[0]['date']} to {days[-1]['date']}. Height is contributions per day; snow is a busy stretch; the flag is the busiest day ({counts[peak_i]} on {days[peak_i]['date']}).",12,muted)
+    body+=txt(18,H-14,"Public contribution calendar, refreshed "+data["snapshot"],12,muted)
+    return wrap(W,H,"A year of GitHub contributions drawn as a mountain ridge, with a trekker walking the route from "+days[0]["date"]+" to "+days[-1]["date"],body,"",bg)
 
 def main():
     p=argparse.ArgumentParser();p.add_argument("--user",default="vekhyat");p.add_argument("--from-json",type=Path);a=p.parse_args()
     data=json.loads(a.from_json.read_text(encoding="utf-8")) if a.from_json else get_data(a.user)
-    outputs={"activity.svg":activity(data),"activity-light.svg":activity(data,True),"github-contribution-grid-snake.svg":snake(data)}
+    outputs={"activity.svg":activity(data),"activity-light.svg":activity(data,True),"ridge.svg":ridge(data)}
     for name,content in outputs.items():
         ET.fromstring(content)
         if len(content.encode())>250_000: raise ValueError(f"Unexpected size: {name}")

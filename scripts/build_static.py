@@ -12,8 +12,10 @@ def main():
         target=folder/'static';target.mkdir(exist_ok=True)
         for source in sorted(folder.glob('*.svg')):
             tree=ET.parse(source);root=tree.getroot()
-            for child in list(root):
-                if child.tag==f'{{{NS}}}style': root.remove(child)
+            for parent in root.iter():
+                for child in list(parent):
+                    if child.tag in (f'{{{NS}}}style',f'{{{NS}}}animate',f'{{{NS}}}animateMotion',f'{{{NS}}}animateTransform'):
+                        parent.remove(child)
             tree.write(target/source.name,encoding='utf-8',xml_declaration=False)
             count+=1
     print(f'Built {count} static SVG fallbacks')

@@ -35,8 +35,8 @@ You can find me on my [portfolio](https://vekhyat.github.io/portfolio/) and [Lin
 </picture>
 
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/github-contribution-grid-snake.svg">
-  <img src="./dist/github-contribution-grid-snake.svg" alt="My public GitHub contribution calendar for the last year, with a snake tracing it." width="100%">
+  <source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/ridge.svg">
+  <img src="./dist/ridge.svg" alt="My public GitHub contribution calendar for the last year, drawn as a mountain ridge with a trekker walking the route." width="100%">
 </picture>
 
 <sub>All of this is refreshed daily by a workflow in this repository, from public data only.</sub>
