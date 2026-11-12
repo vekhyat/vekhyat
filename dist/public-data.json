@@ -1,6 +1,6 @@
 {
   "user": "vekhyat",
-  "snapshot": "2026-11-11",
+  "snapshot": "2026-11-12",
   "days": [
     {
       "date": "2025-11-09",
@@ -1840,16 +1840,21 @@
     {
       "date": "2026-11-11",
       "level": 1,
-      "count": 9
+      "count": 10
+    },
+    {
+      "date": "2026-11-12",
+      "level": 1,
+      "count": 11
     }
   ],
-  "public_repositories": 14,
+  "public_repositories": 15,
   "public_stars": 1,
   "repository_primary_languages": {
     "Python": 6,
     "Go": 1,
     "C++": 3,
-    "HTML": 1,
+    "HTML": 2,
     "QML": 1,
     "Rust": 1,
     "TypeScript": 1
@@ -1885,16 +1890,16 @@
     }
   ],
   "latest_commit": {
-    "repo": "agent-hub",
-    "url": "https://github.com/vekhyat/agent-hub/commit/77b44a97ea4d3caa895767ba3e7b8eaaeb8e10e0",
-    "message": "Write the README and package description around agents as the main user",
-    "date": "2026-10-30"
+    "repo": "quavok-preview",
+    "url": "https://github.com/vekhyat/quavok-preview/commit/4e89260709b48c8233062a0df54933beba10bdb2",
+    "message": "Preview ba01a6b: live assembly, Rocket voice and polished controls",
+    "date": "2026-11-12"
   },
   "streaks": {
-    "current": 7,
+    "current": 8,
     "longest": 11,
-    "total": 756,
-    "active_days": 85,
+    "total": 768,
+    "active_days": 86,
     "busiest_day": "2026-08-01",
     "busiest_count": 67
   }
