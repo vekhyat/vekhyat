@@ -1,5 +1,5 @@
 <!-- pinned:start -->
-<a href="https://vekhyat.github.io/portfolio/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/header.svg"><img src="./dist/header.svg" width="100%" alt="Vekhyat Jain. Mobile apps, desktop tools, and ML experiments. Exploring machine learning, theoretical computer science, and programming languages."></picture></a>
+<a href="https://vekhyat.com/"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/header.svg"><img src="./dist/header.svg" width="100%" alt="Vekhyat Jain. Mobile apps, desktop tools, and ML experiments. Exploring machine learning, theoretical computer science, and programming languages."></picture></a>
 <p align="center">
 <a href="https://github.com/vekhyat/SatQuery-AI"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/card-1.svg"><img src="./dist/card-1.svg" width="24%" alt="SatQuery-AI. Ask a satellite a question. Change detection, optical against SAR, and a trace of how each answer was formed. Python."></picture></a>
 <a href="https://github.com/vekhyat/Auralis"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./dist/static/card-2.svg"><img src="./dist/card-2.svg" width="24%" alt="Auralis. Lossless audio from a link. Search music and download FLAC from a streaming link, in a Go desktop app. Go."></picture></a>
@@ -12,7 +12,7 @@ I'm Vekhyat. I build things to understand the maths and systems underneath them:
 
 The cards above are my pinned repositories. They redraw themselves every day from whatever I have pinned, so they are always current.
 
-You can find me on my [portfolio](https://vekhyat.github.io/portfolio/) and [LinkedIn](https://www.linkedin.com/in/vekhyat-jain-562776364), or write to [vekhyatjain123@gmail.com](mailto:vekhyatjain123@gmail.com).
+You can find me on my [portfolio](https://vekhyat.com/) and [LinkedIn](https://www.linkedin.com/in/vekhyat-jain-562776364), or write to [vekhyatjain123@gmail.com](mailto:vekhyatjain123@gmail.com).
 
 ## More work
 

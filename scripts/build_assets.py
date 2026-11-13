@@ -34,7 +34,7 @@ MEASURE_FONTS = [Path("/usr/share/fonts/liberation/LiberationSans-Regular.ttf"),
 BOARD, BOARD_EDGE = "#2c4a40", "#1b312a"
 CREAM, CREAM_EDGE, CREAM_INK = "#f2eee4", "#d8d0c2", "#6b665c"
 NAVY, RED, CHALK = "#1a2744", "#c4452d", "#d6e8dc"
-PORTFOLIO = "https://vekhyat.github.io/portfolio/"
+PORTFOLIO = "https://vekhyat.com/"
 BOARD_W, TILE_W, TILE_H = 840, 200, 250
 MARK_START, MARK_END = "<!-- pinned:start -->", "<!-- pinned:end -->"
 HEADER_ALT = ("Vekhyat Jain. Mobile apps, desktop tools, and ML experiments. "
@@ -204,7 +204,7 @@ def header(font, pinned):
     y2 = y1 + cap * (1 + gap)
     inner = (f'<g fill="{NAVY}"><path transform="translate({cx+pad} {y1})" d="{line1}"/>'
              f'<path transform="translate({cx+pad} {y2})" d="{line2}"/></g>')
-    inner += text(cx + pad, cy + ch - pad + 6, "vekhyat.github.io/portfolio", 13, CREAM_INK)
+    inner += text(cx + pad, cy + ch - pad + 6, "vekhyat.com", 13, CREAM_INK)
     angle = -2.2
     cards.append(card(cx, cy, cw, ch, angle, "c0", inner))
     css.append(".c0{animation:land .55s cubic-bezier(.2,.8,.3,1) 0s both}")
