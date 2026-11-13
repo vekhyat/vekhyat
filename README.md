@@ -12,7 +12,7 @@ I'm Vekhyat. I build things to understand the maths and systems underneath them:
 
 The cards above are my pinned repositories. They redraw themselves every day from whatever I have pinned, so they are always current.
 
-You can find me on my [portfolio](https://vekhyat.com/) and [LinkedIn](https://www.linkedin.com/in/vekhyatjain), or write to [vekhyatjain123@gmail.com](mailto:vekhyatjain123@gmail.com).
+You can find me on my [portfolio](https://vekhyat.com/) and [LinkedIn](https://www.linkedin.com/in/vekhyatjain), or write to [me@vekhyat.com](mailto:me@vekhyat.com).
 
 ## More work
 
